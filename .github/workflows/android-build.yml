@@ -12,6 +12,29 @@ permissions:
   contents: read
 
 jobs:
+  website:
+    name: Build shadcn landing website
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install website dependencies
+        working-directory: website
+        run: npm ci
+
+      - name: Build website
+        working-directory: website
+        run: npm run build
+
   build:
     name: Test and build APK
     runs-on: ubuntu-latest

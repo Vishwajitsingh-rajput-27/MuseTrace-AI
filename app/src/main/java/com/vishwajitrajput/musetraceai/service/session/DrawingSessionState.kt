@@ -71,6 +71,14 @@ object DrawingSessionStore {
         autosave(mutableState.value)
     }
 
+    internal fun resetForTests(context: Context) {
+        preferences = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        preferences?.edit()?.clear()?.commit()
+        crashRecoveryEnabled = true
+        runtimeConfig = DrawingRuntimeConfig()
+        mutableState.value = DrawingSessionState()
+    }
+
     fun setCrashRecoveryEnabled(enabled: Boolean) {
         crashRecoveryEnabled = enabled
         if (!enabled) {
@@ -433,8 +441,12 @@ object DrawingSessionStore {
         }
     }
 
-    private fun nextPendingLayerIndex(project: TraceProject, currentIndex: Int, blocked: Set<Int>): Int? =
-        ((currentIndex + 1)..project.layers.lastIndex).firstOrNull { it !in blocked }
+    private fun nextPendingLayerIndex(project: TraceProject, currentIndex: Int, blocked: Set<Int>): Int? {
+        if (project.layers.isEmpty()) return null
+        val forward = ((currentIndex + 1)..project.layers.lastIndex).firstOrNull { it !in blocked }
+        if (forward != null) return forward
+        return (0..currentIndex.coerceAtMost(project.layers.lastIndex)).firstOrNull { it !in blocked }
+    }
 
     private fun readyStatus(project: TraceProject, layerIndex: Int, restored: Boolean = false): String {
         val layer = project.layers.getOrNull(layerIndex)

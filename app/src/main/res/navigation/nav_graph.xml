@@ -62,7 +62,8 @@
         <argument
             android:name="sourceUri"
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="true"
+            app:defaultValue="@null" />
         <action
             android:id="@+id/action_editor_to_sketch"
             app:destination="@id/sketchPreviewFragment" />
@@ -74,7 +75,8 @@
         android:label="@string/sketch_preview_title">
         <argument
             android:name="projectId"
-            app:argType="long" />
+            app:argType="long"
+            app:defaultValue="0L" />
         <action
             android:id="@+id/action_sketch_to_layers"
             app:destination="@id/layerPreviewFragment" />
@@ -95,7 +97,8 @@
         android:label="@string/layer_preview_title">
         <argument
             android:name="projectId"
-            app:argType="long" />
+            app:argType="long"
+            app:defaultValue="0L" />
         <action
             android:id="@+id/action_layers_to_drawing"
             app:destination="@id/drawingSessionFragment" />
@@ -107,7 +110,8 @@
         android:label="@string/stroke_preview_title">
         <argument
             android:name="projectId"
-            app:argType="long" />
+            app:argType="long"
+            app:defaultValue="0L" />
         <action
             android:id="@+id/action_strokes_to_drawing"
             app:destination="@id/drawingSessionFragment" />
@@ -124,7 +128,8 @@
         android:label="@string/drawing_session_title">
         <argument
             android:name="projectId"
-            app:argType="long" />
+            app:argType="long"
+            app:defaultValue="0L" />
     </fragment>
 
     <fragment
