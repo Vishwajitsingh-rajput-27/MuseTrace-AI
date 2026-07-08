@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="MuseTrace AI is an Android-only drawing-assistance app that turns images into layered sketches and guides user-confirmed drawing inside Instagram Draw."
+    />
+    <title>MuseTrace AI - Prompt. Layer. Trace.</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --background: #05070c;
+        --surface: #0b0f19;
+        --card: #101624;
+        --card-soft: #141b2c;
+        --border: #273044;
+        --border-strong: #38445d;
+        --text: #f8fafc;
+        --muted: #a5adbd;
+        --muted-2: #778197;
+        --primary: #9b8cff;
+        --primary-2: #5bb7ff;
+        --success: #35d07f;
+        --warning: #f5c451;
+        --danger: #ff6475;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 22% 8%, rgba(155, 140, 255, 0.18), transparent 34rem),
+          radial-gradient(circle at 78% 0%, rgba(91, 183, 255, 0.14), transparent 30rem),
+          linear-gradient(180deg, #05070c 0%, #080b12 54%, #05070c 100%);
+        color: var(--text);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .container {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid rgba(39, 48, 68, 0.86);
+        background: rgba(5, 7, 12, 0.86);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav {
+        min-height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        font-weight: 750;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(155, 140, 255, 0.24), rgba(91, 183, 255, 0.12));
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .nav-links a,
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0 15px;
+        border-radius: 999px;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 650;
+        transition:
+          border-color 160ms ease,
+          background 160ms ease,
+          color 160ms ease,
+          transform 160ms ease;
+      }
+
+      .nav-links a:hover,
+      .button:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .button {
+        border: 1px solid var(--border);
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .button.primary {
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #05070c;
+        box-shadow: 0 16px 38px rgba(91, 183, 255, 0.18);
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .hero {
+        padding: 86px 0 54px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+        gap: 38px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 8px 12px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.035);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--primary);
+        box-shadow: 0 0 24px rgba(155, 140, 255, 0.8);
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        letter-spacing: 0;
+        line-height: 1.05;
+      }
+
+      h1 {
+        margin-top: 24px;
+        font-size: clamp(48px, 7vw, 86px);
+        font-weight: 820;
+      }
+
+      .tagline {
+        margin: 12px 0 0;
+        color: var(--primary);
+        font-size: clamp(22px, 3vw, 34px);
+        font-weight: 760;
+      }
+
+      .hero-copy {
+        margin: 24px 0 0;
+        max-width: 690px;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .phone-card {
+        border: 1px solid var(--border);
+        border-radius: 32px;
+        background: linear-gradient(180deg, rgba(16, 22, 36, 0.98), rgba(11, 15, 25, 0.98));
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+
+      .phone-screen {
+        border: 1px solid var(--border-strong);
+        border-radius: 24px;
+        background: #060914;
+        overflow: hidden;
+      }
+
+      .screen-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .screen-title {
+        font-weight: 760;
+      }
+
+      .pill {
+        border: 1px solid rgba(155, 140, 255, 0.36);
+        color: #d8d2ff;
+        border-radius: 999px;
+        padding: 5px 9px;
+        background: rgba(155, 140, 255, 0.12);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .overlay-preview {
+        padding: 16px;
+      }
+
+      .color-row {
+        display: grid;
+        grid-template-columns: 78px 1fr;
+        gap: 14px;
+        align-items: center;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.035);
+        padding: 12px;
+      }
+
+      .color-sample {
+        width: 78px;
+        height: 78px;
+        border-radius: 18px;
+        border: 1px solid var(--border-strong);
+        background: #9b8cff;
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .metric {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .metric span {
+        display: block;
+        color: var(--muted-2);
+        font-size: 12px;
+      }
+
+      .metric strong {
+        display: block;
+        margin-top: 3px;
+        font-size: 14px;
+      }
+
+      .section {
+        padding: 68px 0;
+      }
+
+      .section.alt {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        background: rgba(16, 22, 36, 0.34);
+      }
+
+      .section-heading {
+        max-width: 720px;
+        margin-bottom: 30px;
+      }
+
+      .section-heading.center {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+
+      .section-heading h2 {
+        margin-top: 12px;
+        font-size: clamp(32px, 5vw, 54px);
+      }
+
+      .section-heading p {
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .grid.features {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid.two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(16, 22, 36, 0.78);
+        padding: 22px;
+      }
+
+      .card.warning {
+        border-color: rgba(245, 196, 81, 0.4);
+        background: rgba(245, 196, 81, 0.1);
+      }
+
+      .card.success {
+        border-color: rgba(53, 208, 127, 0.35);
+        background: rgba(53, 208, 127, 0.08);
+      }
+
+      .card h3 {
+        font-size: 19px;
+      }
+
+      .card p,
+      .card li {
+        color: var(--muted);
+      }
+
+      .icon {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        color: var(--primary);
+        background: rgba(155, 140, 255, 0.1);
+        margin-bottom: 14px;
+        font-weight: 800;
+      }
+
+      .timeline {
+        counter-reset: step;
+      }
+
+      .timeline .card {
+        position: relative;
+      }
+
+      .timeline .card::before {
+        counter-increment: step;
+        content: counter(step);
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: rgba(155, 140, 255, 0.14);
+        color: var(--primary);
+        font-weight: 800;
+      }
+
+      .screenshot-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .shot {
+        min-height: 360px;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        background: #070b14;
+        overflow: hidden;
+      }
+
+      .shot-bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 14px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--border-strong);
+      }
+
+      .shot-body {
+        padding: 16px;
+        flex: 1;
+      }
+
+      .preview-canvas {
+        min-height: 150px;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        background:
+          linear-gradient(135deg, rgba(155, 140, 255, 0.3), transparent 42%),
+          linear-gradient(45deg, rgba(91, 183, 255, 0.24), transparent 50%),
+          #0e1422;
+      }
+
+      .swatches {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .swatch {
+        width: 28px;
+        height: 28px;
+        border-radius: 999px;
+        border: 1px solid var(--border-strong);
+      }
+
+      .control-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 10px 12px;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .steps {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .steps li + li {
+        margin-top: 8px;
+      }
+
+      .footer {
+        border-top: 1px solid var(--border);
+        background: rgba(5, 7, 12, 0.78);
+        padding: 36px 0;
+        color: var(--muted);
+      }
+
+      @media (max-width: 920px) {
+        .hero-grid,
+        .grid.features,
+        .grid.three,
+        .grid.two,
+        .screenshot-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 14px 0;
+        }
+
+        .nav-links {
+          justify-content: flex-start;
+        }
+
+        .hero {
+          padding-top: 52px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .metric-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .color-row {
+          grid-template-columns: 1fr;
+        }
+
+        .color-sample {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="container nav" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="MuseTrace AI home">
+          <span class="brand-mark">MT</span>
+          <span>MuseTrace AI</span>
+        </a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#screenshots">Screenshots</a>
+          <a href="#setup">Setup</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#disclaimer">Disclaimer</a>
+          <a class="button primary" href="https://github.com/Vishwajitsingh-rajput-27/MuseTrace-AI/releases/latest">Download APK</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow">Android-only drawing assistance</span>
+            <h1>MuseTrace AI</h1>
+            <p class="tagline">Prompt. Layer. Trace.</p>
+            <p class="hero-copy">
+              MuseTrace AI converts gallery, camera, and Gemini-generated images into 16, 24, or 32-color semi-realistic layered sketches, then helps users recreate them inside Instagram Draw with a floating overlay and user-confirmed Android AccessibilityService gestures.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="https://github.com/Vishwajitsingh-rajput-27/MuseTrace-AI/releases/latest">Download latest APK</a>
+              <a class="button" href="https://github.com/Vishwajitsingh-rajput-27/MuseTrace-AI">View GitHub repository</a>
+            </div>
+          </div>
+          <aside class="phone-card" aria-label="Floating overlay preview">
+            <div class="phone-screen">
+              <div class="screen-top">
+                <span class="screen-title">Overlay session</span>
+                <span class="pill">Color 4 of 16</span>
+              </div>
+              <div class="overlay-preview">
+                <div class="color-row">
+                  <div class="color-sample" aria-label="Soft violet color sample"></div>
+                  <div>
+                    <strong>Soft violet layer</strong>
+                    <p style="margin: 6px 0 0; color: var(--muted)">HEX #9B8CFF<br />RGB 155, 140, 255</p>
+                  </div>
+                </div>
+                <div class="metric-grid">
+                  <div class="metric"><span>Strokes</span><strong>218</strong></div>
+                  <div class="metric"><span>Time</span><strong>3m 40s</strong></div>
+                  <div class="metric"><span>Progress</span><strong>25%</strong></div>
+                </div>
+                <p style="margin: 16px 0 0; color: var(--muted)">
+                  Select this color manually in Instagram Draw, then tap Continue.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="container">
+          <div class="section-heading center">
+            <span class="eyebrow">Features</span>
+            <h2>Layered drawing workflow for Android</h2>
+            <p>Built for users who want a guided tracing plan without giving up control of Instagram or their account.</p>
+          </div>
+          <div class="grid features">
+            <article class="card">
+              <div class="icon">AI</div>
+              <h3>Gemini image generation</h3>
+              <p>Generate drawing-friendly images from prompts with bold outlines, clean shapes, and low background complexity.</p>
+            </article>
+            <article class="card">
+              <div class="icon">IM</div>
+              <h3>Gallery and camera import</h3>
+              <p>Start from saved images or a new camera capture, then edit before sketch conversion.</p>
+            </article>
+            <article class="card">
+              <div class="icon">16</div>
+              <h3>16/24/32 color layers</h3>
+              <p>Convert the image into limited-color layers with swatches, masks, stroke counts, and estimated time.</p>
+            </article>
+            <article class="card">
+              <div class="icon">OV</div>
+              <h3>Floating overlay controller</h3>
+              <p>Continue, pause, resume, skip, redraw, cancel, or emergency stop without leaving Instagram Draw.</p>
+            </article>
+            <article class="card">
+              <div class="icon">AC</div>
+              <h3>Accessibility gestures</h3>
+              <p>Uses official Android AccessibilityService gesture dispatch only after the user taps Continue.</p>
+            </article>
+            <article class="card">
+              <div class="icon">CA</div>
+              <h3>Four-point calibration</h3>
+              <p>Calibrate top-left, top-right, bottom-left, and bottom-right for the final Instagram Draw area.</p>
+            </article>
+            <article class="card">
+              <div class="icon">PR</div>
+              <h3>Project persistence</h3>
+              <p>Save project workflow, layers, strokes, settings, calibration, and drawing progress for later use.</p>
+            </article>
+            <article class="card">
+              <div class="icon">SH</div>
+              <h3>Safety boundaries</h3>
+              <p>No Instagram login, no private APIs, no scraping, no bypassing restrictions, and no automatic messages.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="screenshots">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">Screenshots section</span>
+            <h2>Static interface previews</h2>
+            <p>These panels show the key screens a GitHub Pages visitor needs to understand: generation, layer preview, and overlay drawing.</p>
+          </div>
+          <div class="screenshot-grid">
+            <figure class="shot">
+              <div class="shot-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><strong>AI Generator</strong></div>
+              <div class="shot-body">
+                <div class="preview-canvas"></div>
+                <div class="control-row"><span>Prompt</span><strong>girl watching sunset</strong></div>
+                <div class="control-row"><span>Style</span><strong>Semi-realistic sketch</strong></div>
+                <div class="control-row"><span>Action</span><strong>Generate</strong></div>
+              </div>
+            </figure>
+            <figure class="shot">
+              <div class="shot-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><strong>Layer Preview</strong></div>
+              <div class="shot-body">
+                <div class="preview-canvas"></div>
+                <div class="swatches">
+                  <span class="swatch" style="background:#1f2937"></span>
+                  <span class="swatch" style="background:#9b8cff"></span>
+                  <span class="swatch" style="background:#5bb7ff"></span>
+                  <span class="swatch" style="background:#f5c451"></span>
+                  <span class="swatch" style="background:#35d07f"></span>
+                  <span class="swatch" style="background:#ff6475"></span>
+                </div>
+                <div class="control-row"><span>Palette</span><strong>16 colors</strong></div>
+                <div class="control-row"><span>Order</span><strong>Dark to light</strong></div>
+              </div>
+            </figure>
+            <figure class="shot">
+              <div class="shot-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><strong>Floating Overlay</strong></div>
+              <div class="shot-body">
+                <div class="color-row">
+                  <div class="color-sample"></div>
+                  <div><strong>Color 4 of 16</strong><p style="margin: 6px 0 0; color: var(--muted)">Tap Continue after manually selecting this color.</p></div>
+                </div>
+                <div class="control-row"><span>Continue</span><strong>Ready</strong></div>
+                <div class="control-row"><span>Pause</span><strong>Available</strong></div>
+                <div class="control-row"><span>Emergency Stop</span><strong style="color: var(--danger)">Visible</strong></div>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="setup">
+        <div class="container">
+          <div class="section-heading center">
+            <span class="eyebrow">Setup steps</span>
+            <h2>Install and prepare the phone</h2>
+            <p>Set up MuseTrace AI before opening Instagram Draw for a real drawing session.</p>
+          </div>
+          <div class="grid three timeline">
+            <article class="card">
+              <h3>Install APK</h3>
+              <p>Download MuseTrace-AI.apk from the latest GitHub release, open it on Android, and allow installation from that source if Android asks.</p>
+            </article>
+            <article class="card">
+              <h3>Gemini setup</h3>
+              <p>Open Settings, paste your Gemini API key, tap Save key securely, then test it. Never commit or share API keys.</p>
+            </article>
+            <article class="card">
+              <h3>Accessibility setup</h3>
+              <p>Enable MuseTrace AI in Android Accessibility settings. This allows user-confirmed drawing gestures only.</p>
+            </article>
+            <article class="card">
+              <h3>Overlay permission setup</h3>
+              <p>Allow Display Over Other Apps so the floating controller can stay above Instagram Draw.</p>
+            </article>
+            <article class="card">
+              <h3>Create or import image</h3>
+              <p>Generate with Gemini, import from Gallery, or capture with Camera, then edit and convert into color layers.</p>
+            </article>
+            <article class="card">
+              <h3>Calibrate drawing area</h3>
+              <p>Save the final Draw canvas with four calibration points after opening the same Instagram Draw layout you will use.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="workflow">
+        <div class="container">
+          <div class="grid two">
+            <article class="card">
+              <h3>Instagram Draw workflow</h3>
+              <ol class="steps">
+                <li>Open Instagram manually.</li>
+                <li>Open the target chat manually.</li>
+                <li>Open Draw mode manually.</li>
+                <li>Use Add Space manually if available.</li>
+                <li>Keep Instagram Draw open until drawing is finished.</li>
+                <li>Select each overlay color manually in Instagram Draw.</li>
+                <li>Tap Continue in the floating overlay after selecting the color.</li>
+                <li>Manually send or save in Instagram when drawing is complete.</li>
+              </ol>
+            </article>
+            <article class="card warning">
+              <h3>Add Space workflow</h3>
+              <p>
+                MuseTrace AI does not automatically tap Add Space. If Instagram shows Add Space and you want to use it, tap it manually first, then calibrate the final drawing area.
+              </p>
+              <p>
+                If Add Space is missing, continue with the normal Draw canvas. MuseTrace AI cannot enable, unlock, force, or add Add Space.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="disclaimer">
+        <div class="container">
+          <div class="grid two">
+            <article class="card warning">
+              <h3>Disclaimer</h3>
+              <p>
+                MuseTrace AI is not affiliated with Instagram or Meta. It works only if Instagram Draw is already available on the user's account, app version, region, and device. It does not log into Instagram, use private APIs, scrape, bypass security, or send messages automatically.
+              </p>
+            </article>
+            <article class="card success">
+              <h3>Download</h3>
+              <p>Get the latest Android APK from the official GitHub release page.</p>
+              <a class="button primary" href="https://github.com/Vishwajitsingh-rajput-27/MuseTrace-AI/releases/latest">Download MuseTrace-AI.apk</a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <strong>MuseTrace AI</strong>
+        <p>Prompt. Layer. Trace. Static GitHub Pages landing page for the Android project.</p>
+        <p>
+          <a href="https://github.com/Vishwajitsingh-rajput-27/MuseTrace-AI">GitHub repository</a>
+          &nbsp;|&nbsp;
+          <a href="https://github.com/Vishwajitsingh-rajput-27/MuseTrace-AI/releases/latest">Latest release</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

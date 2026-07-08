@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/onboardingFragment">
+
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.onboarding.OnboardingFragment"
+        android:label="Disclaimer">
+        <action
+            android:id="@+id/action_onboarding_to_home"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.home.HomeFragment"
+        android:label="@string/home_title">
+        <action
+            android:id="@+id/action_home_to_generator"
+            app:destination="@id/aiImageGeneratorFragment" />
+        <action
+            android:id="@+id/action_home_to_editor"
+            app:destination="@id/editorFragment" />
+        <action
+            android:id="@+id/action_home_to_settings"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_home_to_history"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_home_to_guide"
+            app:destination="@id/guideFragment" />
+        <action
+            android:id="@+id/action_home_to_troubleshooting"
+            app:destination="@id/troubleshootingFragment" />
+        <action
+            android:id="@+id/action_home_to_about"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_home_to_calibration"
+            app:destination="@id/calibrationFragment" />
+        <action
+            android:id="@+id/action_home_to_overlay"
+            app:destination="@id/floatingOverlayControllerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/aiImageGeneratorFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.generator.AIImageGeneratorFragment"
+        android:label="@string/generator_title">
+        <action
+            android:id="@+id/action_generator_to_editor"
+            app:destination="@id/editorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editorFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.editor.EditorFragment"
+        android:label="@string/editor_title">
+        <argument
+            android:name="sourceUri"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_editor_to_sketch"
+            app:destination="@id/sketchPreviewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/sketchPreviewFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.preview.SketchPreviewFragment"
+        android:label="@string/sketch_preview_title">
+        <argument
+            android:name="projectId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_sketch_to_layers"
+            app:destination="@id/layerPreviewFragment" />
+        <action
+            android:id="@+id/action_sketch_to_strokes"
+            app:destination="@id/strokePreviewFragment" />
+        <action
+            android:id="@+id/action_sketch_to_calibration"
+            app:destination="@id/calibrationFragment" />
+        <action
+            android:id="@+id/action_sketch_to_drawing"
+            app:destination="@id/drawingSessionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/layerPreviewFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.layers.LayerPreviewFragment"
+        android:label="@string/layer_preview_title">
+        <argument
+            android:name="projectId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_layers_to_drawing"
+            app:destination="@id/drawingSessionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/strokePreviewFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.strokes.StrokePreviewFragment"
+        android:label="@string/stroke_preview_title">
+        <argument
+            android:name="projectId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_strokes_to_drawing"
+            app:destination="@id/drawingSessionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/calibrationFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.calibration.CalibrationFragment"
+        android:label="@string/calibration_title" />
+
+    <fragment
+        android:id="@+id/drawingSessionFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.drawing.DrawingSessionFragment"
+        android:label="@string/drawing_session_title">
+        <argument
+            android:name="projectId"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/floatingOverlayControllerFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.overlay.FloatingOverlayControllerFragment"
+        android:label="@string/overlay_controller_title" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.settings.SettingsFragment"
+        android:label="@string/settings_title" />
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.history.HistoryFragment"
+        android:label="@string/history_title">
+        <action
+            android:id="@+id/action_history_to_sketch"
+            app:destination="@id/sketchPreviewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/guideFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.guide.GuideFragment"
+        android:label="@string/guide_title" />
+
+    <fragment
+        android:id="@+id/troubleshootingFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.troubleshooting.TroubleshootingFragment"
+        android:label="@string/troubleshooting_title" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.vishwajitrajput.musetraceai.feature.about.AboutFragment"
+        android:label="@string/about_title" />
+</navigation>

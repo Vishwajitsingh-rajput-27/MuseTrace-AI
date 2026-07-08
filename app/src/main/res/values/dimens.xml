@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="space_2">2dp</dimen>
+    <dimen name="space_4">4dp</dimen>
+    <dimen name="space_8">8dp</dimen>
+    <dimen name="space_12">12dp</dimen>
+    <dimen name="space_16">16dp</dimen>
+    <dimen name="space_20">20dp</dimen>
+    <dimen name="space_24">24dp</dimen>
+    <dimen name="space_32">32dp</dimen>
+    <dimen name="card_radius">20dp</dimen>
+    <dimen name="card_radius_compact">16dp</dimen>
+    <dimen name="overlay_radius">24dp</dimen>
+    <dimen name="pill_radius">999dp</dimen>
+    <dimen name="sf_border_width">1dp</dimen>
+    <dimen name="sf_button_height">48dp</dimen>
+    <dimen name="sf_preview_height">360dp</dimen>
+</resources>

@@ -1,0 +1,4 @@
+-keep class org.opencv.** { *; }
+-keep class com.vishwajitrajput.musetraceai.service.accessibility.** { *; }
+-keep class dagger.hilt.** { *; }
+-keep class javax.inject.** { *; }

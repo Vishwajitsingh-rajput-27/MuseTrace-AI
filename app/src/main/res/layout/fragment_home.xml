@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mt_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_16">
+
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/mt_text"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tagline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            android:text="@string/tagline"
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="15sp" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_20">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_16">
+
+                <TextView
+                    android:id="@+id/lastProjectTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No traced sketches yet"
+                    android:textColor="@color/mt_text"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/lastProjectMeta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:text="Create a layered sketch from gallery, camera, or Gemini."
+                    android:textColor="@color/mt_text_secondary"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </com.vishwajitrajput.musetraceai.core.ui.SfCard>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfButton
+            android:id="@+id/openGalleryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_20"
+            android:text="Choose gallery image" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+            android:id="@+id/openCameraButton"
+            style="@style/Widget.MuseTrace.Button.Outline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:text="Capture camera image" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+            android:id="@+id/openGeneratorButton"
+            style="@style/Widget.MuseTrace.Button.Outline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:text="Generate with Gemini" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_20">
+
+            <LinearLayout
+                android:id="@+id/actionMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_8" />
+        </com.vishwajitrajput.musetraceai.core.ui.SfCard>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

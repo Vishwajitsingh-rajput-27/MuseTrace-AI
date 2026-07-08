@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MuseTrace" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/mt_background</item>
+        <item name="android:navigationBarColor">@color/mt_background</item>
+        <item name="android:windowBackground">@color/mt_background</item>
+        <item name="colorPrimary">@color/mt_primary</item>
+        <item name="colorOnPrimary">@color/mt_on_primary</item>
+        <item name="colorSecondary">@color/mt_primary_soft</item>
+        <item name="colorSurface">@color/mt_surface</item>
+        <item name="colorOnSurface">@color/mt_text</item>
+        <item name="colorSurfaceVariant">@color/mt_card</item>
+        <item name="colorOnSurfaceVariant">@color/mt_text_secondary</item>
+        <item name="colorOutline">@color/mt_border</item>
+        <item name="colorError">@color/mt_danger</item>
+        <item name="fontFamily">sans</item>
+        <item name="materialButtonStyle">@style/Widget.MuseTrace.Button</item>
+        <item name="materialCardViewStyle">@style/Widget.MuseTrace.Card</item>
+        <item name="chipStyle">@style/Widget.MuseTrace.Chip</item>
+        <item name="textInputStyle">@style/Widget.MuseTrace.TextInput</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.MuseTrace.BottomSheet</item>
+    </style>
+
+    <style name="Widget.MuseTrace.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/mt_card</item>
+        <item name="strokeColor">@color/mt_border</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardCornerRadius">@dimen/card_radius</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <style name="Widget.MuseTrace.Card.Warning" parent="Widget.MuseTrace.Card">
+        <item name="cardBackgroundColor">@color/mt_warning_container</item>
+        <item name="strokeColor">@color/mt_warning</item>
+    </style>
+
+    <style name="Widget.MuseTrace.Card.Danger" parent="Widget.MuseTrace.Card">
+        <item name="cardBackgroundColor">@color/mt_danger_container</item>
+        <item name="strokeColor">@color/mt_danger</item>
+    </style>
+
+    <style name="Widget.MuseTrace.Card.Overlay" parent="Widget.MuseTrace.Card">
+        <item name="cardBackgroundColor">@color/mt_scrim</item>
+        <item name="cardCornerRadius">@dimen/overlay_radius</item>
+        <item name="cardElevation">8dp</item>
+    </style>
+
+    <style name="Widget.MuseTrace.Button" parent="Widget.Material3.Button">
+        <item name="cornerRadius">@dimen/pill_radius</item>
+        <item name="backgroundTint">@color/mt_primary</item>
+        <item name="android:textColor">@color/mt_on_primary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/sf_button_height</item>
+    </style>
+
+    <style name="Widget.MuseTrace.Button.Outline" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="cornerRadius">@dimen/pill_radius</item>
+        <item name="strokeColor">@color/mt_border</item>
+        <item name="android:textColor">@color/mt_text</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/sf_button_height</item>
+    </style>
+
+    <style name="Widget.MuseTrace.Button.Ghost" parent="Widget.Material3.Button.TextButton">
+        <item name="cornerRadius">@dimen/pill_radius</item>
+        <item name="backgroundTint">@color/mt_transparent</item>
+        <item name="android:textColor">@color/mt_text_secondary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/sf_button_height</item>
+    </style>
+
+    <style name="Widget.MuseTrace.Button.Danger" parent="Widget.Material3.Button">
+        <item name="cornerRadius">@dimen/pill_radius</item>
+        <item name="backgroundTint">@color/mt_danger</item>
+        <item name="android:textColor">@color/mt_on_primary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/sf_button_height</item>
+    </style>
+
+    <style name="Widget.MuseTrace.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/mt_card_alt</item>
+        <item name="chipStrokeColor">@color/mt_border</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/mt_text</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MuseTrace.Chip</item>
+    </style>
+
+    <style name="Widget.MuseTrace.TextInput" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/mt_card</item>
+        <item name="boxStrokeColor">@color/mt_border</item>
+        <item name="hintTextColor">@color/mt_text_secondary</item>
+        <item name="android:textColorHint">@color/mt_text_secondary</item>
+        <item name="boxCornerRadiusTopStart">@dimen/card_radius_compact</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/card_radius_compact</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/card_radius_compact</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/card_radius_compact</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MuseTrace.Chip">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ThemeOverlay.MuseTrace.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.MuseTrace.BottomSheet</item>
+        <item name="android:colorBackground">@color/mt_card</item>
+    </style>
+
+    <style name="Widget.MuseTrace.BottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@color/mt_card</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MuseTrace.BottomSheet</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MuseTrace.BottomSheet">
+        <item name="cornerSizeTopLeft">@dimen/overlay_radius</item>
+        <item name="cornerSizeTopRight">@dimen/overlay_radius</item>
+    </style>
+</resources>

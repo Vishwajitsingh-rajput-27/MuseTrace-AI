@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mt_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_16">
+
+        <com.vishwajitrajput.musetraceai.core.ui.SketchCanvasView
+            android:id="@+id/sessionCanvas"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/bg_preview" />
+
+        <TextView
+            android:id="@+id/sessionStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            android:textColor="@color/mt_text"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfWarningCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12">
+
+            <TextView
+                android:id="@+id/safetyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space_16"
+                android:text="Open Instagram yourself, open the chat yourself, enter Draw mode yourself, use Add Space yourself if available, and manually select the shown color before confirming."
+                android:textColor="@color/mt_text_secondary"
+                android:textSize="14sp" />
+        </com.vishwajitrajput.musetraceai.core.ui.SfWarningCard>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            android:orientation="horizontal">
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                android:id="@+id/previousLayerButton"
+                style="@style/Widget.MuseTrace.Button.Outline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_8"
+                android:layout_weight="1"
+                android:text="Previous" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                android:id="@+id/nextLayerButton"
+                style="@style/Widget.MuseTrace.Button.Outline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_8"
+                android:layout_weight="1"
+                android:text="Next" />
+        </LinearLayout>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfButton
+            android:id="@+id/startForegroundButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:text="Start Instagram Drawing Session" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+            android:id="@+id/openOverlayButton"
+            style="@style/Widget.MuseTrace.Button.Outline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:text="Open drawing session checklist" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+            android:id="@+id/confirmDrawButton"
+            style="@style/Widget.MuseTrace.Button.Outline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:text="Start Instagram Drawing Session" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

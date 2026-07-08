@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mt_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/settingsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_16">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textColor="@color/mt_text"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfInfoCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_16">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Settings notice"
+                    android:textColor="@color/mt_text"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/settingsDisclaimerText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:textColor="@color/mt_text_secondary"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </com.vishwajitrajput.musetraceai.core.ui.SfInfoCard>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfWarningCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12">
+
+            <TextView
+                android:id="@+id/settingsDrawingWarningText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space_16"
+                android:textColor="@color/mt_text_secondary"
+                android:textSize="13sp" />
+        </com.vishwajitrajput.musetraceai.core.ui.SfWarningCard>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfTextField
+            android:id="@+id/apiKeyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            android:hint="Gemini API key"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/apiKeyInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/mt_text"
+                android:textColorHint="@color/mt_text_secondary" />
+        </com.vishwajitrajput.musetraceai.core.ui.SfTextField>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfButton
+            android:id="@+id/saveKeyButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            android:text="Save key securely" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+            android:id="@+id/testKeyButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:text="Test Gemini Key" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+            android:id="@+id/clearKeyButton"
+            style="@style/Widget.MuseTrace.Button.Outline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:text="Clear Gemini Key" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_20"
+            android:text="Default palette"
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="13sp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/defaultColorGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            app:singleSelection="true">
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/chip16"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/chip24"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/chip32"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="32" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/settingsStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="14sp" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

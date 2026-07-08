@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mt_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_16">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Image editor"
+            android:textColor="@color/mt_text"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sourceLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            android:text="Import an image and prepare it for layered drawing."
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:orientation="horizontal">
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfButton
+                android:id="@+id/importGalleryButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_4"
+                android:layout_weight="1"
+                android:text="Gallery" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                android:id="@+id/importCameraButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_4"
+                android:layout_weight="1"
+                android:text="Camera" />
+        </LinearLayout>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_12">
+
+                <TextView
+                    android:id="@+id/afterLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="After preview"
+                    android:textColor="@color/mt_text"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/afterPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sf_preview_height"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/bg_preview"
+                    android:contentDescription="Processed image preview"
+                    android:scaleType="centerInside" />
+
+                <TextView
+                    android:id="@+id/beforeLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_12"
+                    android:text="Before preview"
+                    android:textColor="@color/mt_text_secondary"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/beforePreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="128dp"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/bg_preview"
+                    android:contentDescription="Original image preview"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
+        </com.vishwajitrajput.musetraceai.core.ui.SfCard>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfProgressCard
+            android:id="@+id/progressCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            android:visibility="gone" />
+
+        <HorizontalScrollView
+            android:id="@+id/toolCarousel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:fillViewport="false"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolCropButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Crop" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/rotateLeftButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Rotate -90" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/rotateRightButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Rotate +90" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/flipHorizontalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Flip H" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/flipVerticalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Flip V" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolResizeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Resize" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolBrightnessButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Brightness" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolContrastButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Contrast" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolSaturationButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Saturation" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolSharpnessButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Sharpness" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolAutoButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Auto" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolNoiseButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Noise" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolEdgeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Edge" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolBackgroundButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Background" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolPortraitButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Portrait" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                    android:id="@+id/toolFaceSafeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Face safe" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_16">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/sliderLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Brightness"
+                        android:textColor="@color/mt_text"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/sliderValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/mt_text_secondary"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfSlider
+                    android:id="@+id/toolSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_8"
+                    app:stepSize="1"
+                    app:value="0"
+                    app:valueFrom="-60"
+                    app:valueTo="60" />
+            </LinearLayout>
+        </com.vishwajitrajput.musetraceai.core.ui.SfCard>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:text="Sketch colors"
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="13sp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/colorCountGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            app:singleSelection="true">
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/chip16"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="16" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/chip24"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/chip32"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="32" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:orientation="horizontal">
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                android:id="@+id/resetButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_4"
+                android:layout_weight="1"
+                android:text="Reset" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfButton
+                android:id="@+id/applyButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_4"
+                android:layout_weight="1"
+                android:text="Apply" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:orientation="horizontal">
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfDangerButton
+                android:id="@+id/cancelButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_4"
+                android:layout_weight="1"
+                android:text="Cancel" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                android:id="@+id/exportButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_4"
+                android:layout_weight="1"
+                android:text="Export" />
+        </LinearLayout>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfButton
+            android:id="@+id/createSketchButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:text="Continue to sketch" />
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="14sp" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

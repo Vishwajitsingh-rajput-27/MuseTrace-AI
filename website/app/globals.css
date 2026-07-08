@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 5%;
+    --foreground: 210 40% 98%;
+    --card: 222 28% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 28% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 244 95% 74%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 217 24% 14%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 24% 13%;
+    --muted-foreground: 215 18% 68%;
+    --accent: 199 89% 58%;
+    --accent-foreground: 222 47% 6%;
+    --destructive: 0 84% 62%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 18% 20%;
+    --input: 217 18% 20%;
+    --ring: 244 95% 74%;
+    --radius: 1rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .surface-grid {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.32) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.32) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(to bottom, black, black 70%, transparent);
+  }
+}

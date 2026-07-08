@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mt_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_16">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gemini image generator"
+            android:textColor="@color/mt_text"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            android:text="Create a trace-ready source image, then send it directly to the editor."
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="14sp" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfTextField
+            android:id="@+id/promptLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:hint="Prompt">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/promptInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:inputType="textMultiLine|textCapSentences"
+                android:minLines="4"
+                android:textColor="@color/mt_text"
+                android:textColorHint="@color/mt_text_secondary" />
+        </com.vishwajitrajput.musetraceai.core.ui.SfTextField>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfTextField
+            android:id="@+id/negativePromptLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            android:hint="Negative prompt">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/negativePromptInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:inputType="textMultiLine|textCapSentences"
+                android:minLines="2"
+                android:textColor="@color/mt_text"
+                android:textColorHint="@color/mt_text_secondary" />
+        </com.vishwajitrajput.musetraceai.core.ui.SfTextField>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:text="Style"
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="13sp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/styleGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            app:singleSelection="true">
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/styleSemiRealistic"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Semi-realistic sketch" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/styleAnime"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anime sketch" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/styleCartoon"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cartoon portrait" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/stylePencil"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pencil sketch" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/styleMarker"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Marker drawing" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/styleWatercolor"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Watercolor sketch" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/styleCouple"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Couple doodle" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/styleSticker"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cute sticker style" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/stylePortrait"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Portrait sketch" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/stylePoster"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minimal color poster" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/styleHighContrast"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="High contrast drawing" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:text="Aspect ratio"
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="13sp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/aspectRatioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            app:singleSelection="true">
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/aspectSquare"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="1:1" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/aspectPortrait"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4:5" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/aspectStory"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9:16" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfChip
+                android:id="@+id/aspectCustom"
+                style="@style/Widget.MuseTrace.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Custom canvas" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfButton
+            android:id="@+id/generateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:text="Generate" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:orientation="horizontal">
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                android:id="@+id/regenerateButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_4"
+                android:layout_weight="1"
+                android:text="Regenerate" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfDangerButton
+                android:id="@+id/cancelButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_4"
+                android:layout_weight="1"
+                android:text="Cancel" />
+        </LinearLayout>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfProgressCard
+            android:id="@+id/loadingCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:visibility="gone" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfWarningCard
+            android:id="@+id/errorCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/errorText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space_16"
+                android:textColor="@color/mt_text_secondary"
+                android:textSize="14sp" />
+        </com.vishwajitrajput.musetraceai.core.ui.SfWarningCard>
+
+        <ImageView
+            android:id="@+id/generatedPreview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sf_preview_height"
+            android:layout_marginTop="@dimen/space_16"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bg_preview"
+            android:contentDescription="Generated image preview"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            android:text="Gemini is the default provider. Add your key in Settings before generating."
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:orientation="horizontal">
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                android:id="@+id/saveButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_4"
+                android:layout_weight="1"
+                android:text="Save" />
+
+            <com.vishwajitrajput.musetraceai.core.ui.SfButton
+                android:id="@+id/useForDrawingButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_4"
+                android:layout_weight="1"
+                android:text="Use for drawing" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_20"
+            android:text="Generation history"
+            android:textColor="@color/mt_text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/generationHistoryContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:orientation="vertical" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mt_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_16">
+
+        <TextView
+            android:id="@+id/calibrationSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/mt_text"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/calibrationNotice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:text="MuseTrace AI does not automatically tap Add Space. Use Add Space manually first, then calibrate."
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="14sp" />
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfWarningCard
+            android:id="@+id/missingCalibrationCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12">
+
+            <TextView
+                android:id="@+id/missingCalibrationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space_12"
+                android:textColor="@color/mt_text"
+                android:textSize="13sp" />
+        </com.vishwajitrajput.musetraceai.core.ui.SfWarningCard>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/profileContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_12">
+
+                <TextView
+                    android:id="@+id/selectedPointLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mt_text"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/cornerContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_12"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/xLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_12"
+                    android:textColor="@color/mt_text_secondary" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfSlider
+                    android:id="@+id/xSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stepSize="1"
+                    android:value="0"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    app:labelBehavior="withinBounds" />
+
+                <TextView
+                    android:id="@+id/yLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mt_text_secondary" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfSlider
+                    android:id="@+id/ySlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stepSize="1"
+                    android:value="0"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    app:labelBehavior="withinBounds" />
+            </LinearLayout>
+        </com.vishwajitrajput.musetraceai.core.ui.SfCard>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_12">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Drawing-area preview"
+                    android:textColor="@color/mt_text"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.CalibrationPreviewView
+                    android:id="@+id/calibrationPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:background="@drawable/bg_preview" />
+
+                <TextView
+                    android:id="@+id/metricsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_12"
+                    android:textColor="@color/mt_text_secondary"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </com.vishwajitrajput.musetraceai.core.ui.SfCard>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfButton
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:text="Save calibration profile" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

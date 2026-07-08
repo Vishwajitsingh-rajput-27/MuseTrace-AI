@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mt_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_16">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stroke preview"
+            android:textColor="@color/mt_text"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/strokeSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            android:textColor="@color/mt_text_secondary"
+            android:textSize="14sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/strokeLayerList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_12">
+
+                <TextView
+                    android:id="@+id/selectedLayerTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mt_text"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SketchCanvasView
+                    android:id="@+id/strokeCanvas"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp"
+                    android:layout_marginTop="@dimen/space_12"
+                    android:background="@drawable/bg_preview" />
+
+                <TextView
+                    android:id="@+id/strokeLimitLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_12"
+                    android:textColor="@color/mt_text_secondary"
+                    android:textSize="13sp" />
+
+                <com.vishwajitrajput.musetraceai.core.ui.SfSlider
+                    android:id="@+id/strokeLimitSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:stepSize="1"
+                    android:value="0"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    app:labelBehavior="withinBounds" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:orientation="horizontal">
+
+                    <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                        android:id="@+id/previousLayerButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/space_4"
+                        android:layout_weight="1"
+                        android:text="Previous" />
+
+                    <com.vishwajitrajput.musetraceai.core.ui.SfGhostButton
+                        android:id="@+id/nextLayerButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_4"
+                        android:layout_marginEnd="@dimen/space_4"
+                        android:layout_weight="1"
+                        android:text="Next" />
+
+                    <com.vishwajitrajput.musetraceai.core.ui.SfButton
+                        android:id="@+id/animateButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_4"
+                        android:layout_weight="1"
+                        android:text="Animate" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.vishwajitrajput.musetraceai.core.ui.SfCard>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_12">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Optimized path render"
+                    android:textColor="@color/mt_text"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/strokeRasterPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/bg_preview"
+                    android:contentDescription="Optimized stroke render for selected layer"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
+        </com.vishwajitrajput.musetraceai.core.ui.SfCard>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_12">
+
+                <TextView
+                    android:id="@+id/strokeStats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mt_text"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </com.vishwajitrajput.musetraceai.core.ui.SfCard>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfWarningCard
+            android:id="@+id/warningCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12">
+
+            <TextView
+                android:id="@+id/complexityWarnings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space_12"
+                android:textColor="@color/mt_text"
+                android:textSize="13sp" />
+        </com.vishwajitrajput.musetraceai.core.ui.SfWarningCard>
+
+        <com.vishwajitrajput.musetraceai.core.ui.SfButton
+            android:id="@+id/drawingButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:text="Open drawing session" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MuseTrace AI</string>
+    <string name="tagline">Prompt. Layer. Trace.</string>
+    <string name="github_release_url">https://github.com/Vishwajitsingh-rajput-27/MuseTrace-AI/releases/latest</string>
+    <string name="home_title">MuseTrace AI</string>
+    <string name="generator_title">AI Image Generator</string>
+    <string name="editor_title">Editor</string>
+    <string name="sketch_preview_title">Sketch Preview</string>
+    <string name="layer_preview_title">Layer Preview</string>
+    <string name="stroke_preview_title">Stroke Preview</string>
+    <string name="calibration_title">Calibration</string>
+    <string name="drawing_session_title">Drawing Session</string>
+    <string name="overlay_controller_title">Floating Overlay</string>
+    <string name="settings_title">Settings</string>
+    <string name="history_title">History</string>
+    <string name="guide_title">Guide</string>
+    <string name="troubleshooting_title">Troubleshooting</string>
+    <string name="about_title">About</string>
+    <string name="accessibility_description">MuseTrace AI draws only after explicit confirmation while the user has manually opened Instagram Draw and selected the requested color.</string>
+    <string name="fgs_overlay_subtype">Floating drawing controls visible during a user-confirmed tracing session.</string>
+    <string name="fgs_session_subtype">User-confirmed drawing session status and gesture coordination.</string>
+</resources>
