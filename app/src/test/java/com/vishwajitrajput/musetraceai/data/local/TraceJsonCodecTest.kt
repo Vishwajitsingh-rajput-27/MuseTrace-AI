@@ -1,5 +1,6 @@
 package com.vishwajitrajput.musetraceai.data.local
 
+import android.app.Application
 import com.vishwajitrajput.musetraceai.domain.model.CalibrationProfile
 import com.vishwajitrajput.musetraceai.domain.model.CalibrationProfileType
 import com.vishwajitrajput.musetraceai.domain.model.DrawingSessionLifecycle
@@ -12,7 +13,12 @@ import com.vishwajitrajput.musetraceai.domain.model.WorkflowProgress
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
+@RunWith(RobolectricTestRunner::class)
+@Config(application = Application::class)
 class TraceJsonCodecTest {
     @Test
     fun projectJsonRoundTripPreservesWorkflowAndLayerMetadata() {
