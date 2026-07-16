@@ -278,10 +278,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_8"
-                    app:stepSize="1"
-                    app:value="0"
-                    app:valueFrom="-60"
-                    app:valueTo="60" />
+                    android:stepSize="1"
+                    android:value="0"
+                    android:valueFrom="-60"
+                    android:valueTo="60" />
             </LinearLayout>
         </com.vishwajitrajput.musetraceai.core.ui.SfCard>
 
