@@ -75,7 +75,7 @@ jobs:
             tail -n 160 android-test.log
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
-          useful="$(grep -E '(^> Task .*FAILED|^e: |^FAILURE:|^\* What went wrong:|^Execution failed|^There were failing tests|^[[:space:]]*Caused by:|[0-9]+ tests completed)' android-test.log | tail -n 80)"
+          useful="$(grep -Ei '(^> Task .*FAILED|^e: |error:|^FAILURE:|^\* What went wrong:|^Execution failed|^There were failing tests|^[[:space:]]*Caused by:|[0-9]+ tests completed)' android-test.log | tail -n 80)"
           if [ -z "$useful" ]; then
             useful="$(tail -n 80 android-test.log)"
           fi
