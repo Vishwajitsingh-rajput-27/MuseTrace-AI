@@ -97,7 +97,7 @@
         <item name="boxCornerRadiusBottomEnd">@dimen/card_radius_compact</item>
     </style>
 
-    <style name="ShapeAppearanceOverlay.MuseTrace.Chip">
+    <style name="ShapeAppearanceOverlay.MuseTrace.Chip" parent="">
         <item name="cornerSize">50%</item>
     </style>
 
@@ -111,7 +111,7 @@
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MuseTrace.BottomSheet</item>
     </style>
 
-    <style name="ShapeAppearanceOverlay.MuseTrace.BottomSheet">
+    <style name="ShapeAppearanceOverlay.MuseTrace.BottomSheet" parent="">
         <item name="cornerSizeTopLeft">@dimen/overlay_radius</item>
         <item name="cornerSizeTopRight">@dimen/overlay_radius</item>
     </style>
