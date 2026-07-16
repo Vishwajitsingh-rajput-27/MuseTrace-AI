@@ -54,8 +54,8 @@ class AIImageGeneratorFragment : BaseFragment<FragmentGeneratorBinding>(Fragment
 
     private fun generateFromInputs() {
         viewModel.generate(
-            prompt = binding.promptInput.text.orEmpty().toString(),
-            negativePrompt = binding.negativePromptInput.text.orEmpty().toString(),
+            prompt = binding.promptInput.text?.toString().orEmpty(),
+            negativePrompt = binding.negativePromptInput.text?.toString().orEmpty(),
             styleName = selectedChipText(binding.styleGroup.checkedChipId, "Semi-realistic sketch"),
             aspectRatioName = selectedChipText(binding.aspectRatioGroup.checkedChipId, "1:1"),
         )

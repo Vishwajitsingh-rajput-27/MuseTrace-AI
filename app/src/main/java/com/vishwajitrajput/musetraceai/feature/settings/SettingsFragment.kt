@@ -76,7 +76,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         buildProductionSettingsUi()
         listOf(binding.chip16, binding.chip24, binding.chip32).forEach { it.isCheckable = true }
         binding.saveKeyButton.setOnClickListener {
-            viewModel.saveKey(binding.apiKeyInput.text.orEmpty().toString())
+            viewModel.saveKey(binding.apiKeyInput.text?.toString().orEmpty())
             binding.apiKeyInput.text?.clear()
         }
         binding.testKeyButton.setOnClickListener { viewModel.testKey() }
