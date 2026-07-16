@@ -1,5 +1,6 @@
 package com.vishwajitrajput.musetraceai.service.session
 
+import android.app.Application
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.vishwajitrajput.musetraceai.domain.model.CalibrationProfile
@@ -15,8 +16,10 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
+@Config(application = Application::class)
 class DrawingSessionStoreTest {
     private lateinit var context: Context
 

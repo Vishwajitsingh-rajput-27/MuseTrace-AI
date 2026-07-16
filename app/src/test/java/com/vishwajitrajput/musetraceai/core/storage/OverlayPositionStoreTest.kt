@@ -1,5 +1,6 @@
 package com.vishwajitrajput.musetraceai.core.storage
 
+import android.app.Application
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.vishwajitrajput.musetraceai.domain.model.OverlayControllerState
@@ -10,8 +11,10 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
+@Config(application = Application::class)
 class OverlayPositionStoreTest {
     @Test
     fun overlayStateIsPersistedClampedAndResettable() = runTest {

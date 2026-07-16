@@ -1,6 +1,7 @@
 package com.vishwajitrajput.musetraceai.data.repository
 
 import android.content.Context
+import android.app.Application
 import android.graphics.Bitmap
 import android.graphics.Color
 import androidx.test.core.app.ApplicationProvider
@@ -10,9 +11,11 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import kotlin.math.roundToInt
 
 @RunWith(RobolectricTestRunner::class)
+@Config(application = Application::class)
 class AdvancedColorQuantizerTest {
     @Test
     fun quantizeCreatesSortedTraceableLayersAndPreview() {
