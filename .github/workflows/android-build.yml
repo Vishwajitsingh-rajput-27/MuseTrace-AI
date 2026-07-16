@@ -58,7 +58,26 @@ jobs:
           gradle-version: "8.10.2"
 
       - name: Run unit tests
-        run: gradle testDebugUnitTest --stacktrace
+        id: unit_tests
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle testDebugUnitTest --stacktrace 2>&1 | tee android-test.log
+
+      - name: Report unit test failure
+        if: steps.unit_tests.outcome == 'failure'
+        shell: bash
+        run: |
+          {
+            echo "### Android unit test failure"
+            echo '```text'
+            tail -n 160 android-test.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          detail="$(tail -n 100 android-test.log | sed -E 's/\x1B\[[0-9;]*[mK]//g' | tr '\n' ' ' | cut -c1-4000)"
+          echo "::error title=Android unit tests failed::$detail"
+          exit 1
 
       - name: Build debug APK
         run: gradle assembleDebug --stacktrace
